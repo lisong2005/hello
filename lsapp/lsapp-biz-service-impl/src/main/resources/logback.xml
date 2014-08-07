@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration debug="false" scan="false" scanPeriod="30 seconds">
+
+    <property name="logging_level_info" value="info" />
+    <property name="logging_level_warn" value="warn" />
+    <property name="logging_level_default" value="debug" />
+    <property name="logging_level_test" value="info" />
+
+
+    <!-- DEFAULT -->
+    <appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>logs/common-default.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/common-default.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>
+                %d [%t] [%X{req.remoteHost} %X{req.requestURI} %X{req.queryString}] %-5p %c [%F:%L-%M] - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- common-error -->
+    <appender name="COMMON-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- deny all events with a level below INFO, that is TRACE and DEBUG -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <!-- <filter class="ch.qos.logback.classic.filter.LevelFilter"> -->
+        <!-- <level>ERROR</level> -->
+        <!-- <OnMismatch>DENY</OnMismatch> -->
+        <!-- <OnMatch>ACCEPT</OnMatch> -->
+        <!-- </filter> -->
+        <Encoding>UTF-8</Encoding>
+        <file>logs/common-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/common-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>
+                %d [%t] [%X{req.remoteHost} %X{req.requestURI} %X{req.queryString}] %-5p %c [%F:%L-%M] - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- EHEALTH-DAL-DIGEST-APPENDER -->
+    <appender name="EHEALTH-DAL-DIGEST-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>logs/ehealth-dal-digest.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/ehealth-dal-digest.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>
+                %d - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- EHEALTH-PAGE-PERF-APPENDER -->
+    <appender name="EHEALTH-PAGE-PERF-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>logs/ehealth-page-digest.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/ehealth-page-digest.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>
+                %d - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- STDOUT -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <Encoding>UTF-8</Encoding>
+        <withJansi>false</withJansi>
+        <encoder>
+            <pattern>
+                %d [%t] [%X{req.remoteHost} %X{req.requestURI} %X{req.queryString}] %-5p %c [%F:%L-%M] - %m%n
+            </pattern>
+            <!-- %DATE [%THREAD] %-5LEVEL %LOGGER{80} - %MSG%N%CALLER{2} -->
+            <!-- %d [%t] %-5p %c [%C] [%F:%L:%M] - %m%n -->
+            <!-- <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern> -->
+        </encoder>
+        <!-- <layout class="ch.qos.logback.classic.PatternLayout"> -->
+        <!-- <Pattern> -->
+        <!-- %d [%t] %-5p %30.30c{5} [%F:%M:%L] - %m%n -->
+        <!-- </Pattern> -->
+        <!-- </layout> -->
+    </appender>
+
+    <!-- dao性能摘要日志 -->
+    <logger name="EHEALTH-DAL-DIGEST" level="${logging_level_info}"
+        additivity="false">
+        <appender-ref ref="EHEALTH-DAL-DIGEST-APPENDER" />
+        <appender-ref ref="COMMON-ERROR" />
+    </logger>
+
+    <!-- dao性能摘要日志 -->
+    <logger name="EHEALTH-PAGE-PERF" level="${logging_level_info}"
+        additivity="false">
+        <appender-ref ref="EHEALTH-PAGE-PERF-APPENDER" />
+        <appender-ref ref="COMMON-ERROR" />
+    </logger>
+
+    <logger name="org.apache.cxf" level="info" />
+    <logger name="ls.demon.app" level="debug" />
+
+    <!-- 睿博默认日志输出 -->
+    <logger name="ls.demon" level="${logging_level_info}" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEFAULT" />
+        <appender-ref ref="COMMON-ERROR" />
+    </logger>
+
+
+    <!-- spring framework 默认日志输出 -->
+    <logger name="org.springframework" level="${logging_level_warn}">
+    </logger>
+
+    <!-- spring web 默认日志输出 -->
+    <logger name="org.springframework.web" level="${logging_level_test}">
+    </logger>
+
+    <!-- default -->
+    <root level="${logging_level_warn}">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEFAULT" />
+        <appender-ref ref="COMMON-ERROR" />
+    </root>
+    
+</configuration>

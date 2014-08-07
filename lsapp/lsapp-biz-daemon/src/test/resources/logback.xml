@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+	<!-- DEFAULT -->
+	<appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<file>logs/common-default.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>common-default.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+			<!-- keep 30 days worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>
+				%date [%thread] %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- common-error -->
+	<appender name="COMMON-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<OnMismatch>DENY</OnMismatch>
+			<OnMatch>ACCEPT</OnMatch>
+		</filter>
+		<Encoding>UTF-8</Encoding>
+		<file>logs/common-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>common-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+			<!-- keep 30 days worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>
+				%date [%thread] %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- STDOUT -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Encoding>UTF-8</Encoding>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%date [%thread] %-5level %logger{80} - %msg%n
+			</Pattern>
+			<!-- <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern> -->
+		</layout>
+	</appender>
+
+	<logger name="ls.demon" level="debug">
+	</logger>
+
+	<logger name="org.springframework.web" level="info" />
+
+	<root level="info">
+		<appender-ref ref="DEFAULT" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

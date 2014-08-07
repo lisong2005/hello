@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>ls.demon.app</groupId>
+		<artifactId>lsapp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<!-- <groupId>ls.demon.app</groupId> -->
+	<artifactId>lsapp-common-service-integration</artifactId>
+	<version>${lsapp.version}</version>
+	<name>lsapp-common-service-integration</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- <properties> -->
+	<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+	<!-- </properties> -->
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ls.demon.app</groupId>
+			<artifactId>lsapp-common-service-facade</artifactId>
+			<version>${lsapp.service.facade.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ls.demon.app</groupId>
+			<artifactId>lsapp-common-util</artifactId>
+			<version>${lsapp.version}</version>
+		</dependency>
+
+		<!-- cxf -->
+		<!-- cxf -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-databinding-aegis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-management</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+		</dependency>
+		<!-- Jetty is needed if you're are not using the CXFServlet -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ws.security</groupId>
+			<artifactId>wss4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.santuario</groupId>
+			<artifactId>xmlsec</artifactId>
+		</dependency>
+	</dependencies>
+</project>
