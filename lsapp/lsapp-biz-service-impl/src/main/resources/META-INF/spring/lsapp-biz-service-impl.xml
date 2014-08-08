@@ -48,6 +48,32 @@
 		</jaxws:outInterceptors>
 	</jaxws:server>
 
+	<jaxws:server id="userService2"
+		serviceClass="ls.demon.app.common.service.facade.user.UserService" address="/UserService2">
+		<jaxws:serviceBean>
+			<bean class="ls.demon.app.biz.service.impl.user.UserServiceImpl" />
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="passwordType" value="PasswordText" />
+						<!-- <entry key="passwordType" value="PasswordDigest" /> -->
+						<entry key="passwordCallbackRef">
+							<bean class="ls.demon.app.biz.service.impl.MyPasswordCallback"></bean>
+						</entry>
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
+		</jaxws:outInterceptors>
+	</jaxws:server>
+
 
 	<!-- <jaxws:endpoint id="userService" -->
 	<!-- implementor="ls.demon.app.biz.service.impl.user.UserServiceImpl" -->

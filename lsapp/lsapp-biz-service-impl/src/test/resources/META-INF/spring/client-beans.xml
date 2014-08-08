@@ -39,6 +39,31 @@
 	</jaxws:client>
 
 
+	<jaxws:client id="userService2"
+		serviceClass="ls.demon.app.common.service.facade.user.UserService" address="http://localhost:8080/lsapp/services/UserService2">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="passwordType" value="PasswordText" />
+						<!-- <entry key="passwordType" value="PasswordDigest" /> -->
+						<entry key="user" value="admin" />
+						<entry key="passwordCallbackRef">
+							<bean class="ls.demon.app.biz.service.impl.user.ClientPasswordCallback"></bean>
+						</entry>
+					</map>
+				</constructor-arg>
+			</bean>
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+
 	<!-- two -->
 	<bean id="userServiceClient" class="ls.demon.app.common.service.facade.user.UserService"
 		factory-bean="userServiceClientFactory" factory-method="create" />

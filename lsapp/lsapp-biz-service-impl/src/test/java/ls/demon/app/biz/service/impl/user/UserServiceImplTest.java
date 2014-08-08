@@ -41,6 +41,19 @@ public class UserServiceImplTest extends BaseRemoteTest {
         logger.info("Response: " + response);
     }
 
+    @Test
+    public void testCreateUser2Remote() {
+        UserService client = (UserService) context.getBean("userService2");
+        User user = new User();
+        user.setUserName("username");
+        user.setPassword("abc");
+        user.setRealName("zhangsan");
+        user.setPid("3111111111111111111");
+        user.setEmail("aa@aa.com");
+        UserResult response = client.createUser(user);
+        logger.info("Response: " + response);
+    }
+
     public static void main(String[] args) {
         //调用WebService
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
