@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:cxf="http://cxf.apache.org/core"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd 
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd
         http://cxf.apache.org/jaxws 
         http://cxf.apache.org/schemas/jaxws.xsd
         http://cxf.apache.org/core 
-        http://cxf.apache.org/schemas/core.xsd"
+        http://cxf.apache.org/schemas/core.xsd "
 	default-autowire="byName">
 
 	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" /> -->
 	<!-- <import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
 
 
-
+	<!-- org.apache.wss4j.dom.WSConstants.PW_DIGEST -->
+	<!-- org.apache.ws.security.handler.WSHandlerConstants.ACTION -->
 
 	<jaxws:server id="userService"
-		serviceClass="ls.demon.app.common.service.facade.user.UserService"
-		address="/UserService">
+		serviceClass="ls.demon.app.common.service.facade.user.UserService" address="/UserService">
 		<jaxws:serviceBean>
 			<bean class="ls.demon.app.biz.service.impl.user.UserServiceImpl" />
 		</jaxws:serviceBean>
@@ -32,6 +34,7 @@
 				<constructor-arg>
 					<map>
 						<entry key="action" value="UsernameToken" />
+						<!-- <entry key="passwordType" value="PasswordText" /> -->
 						<entry key="passwordType" value="PasswordDigest" />
 						<entry key="passwordCallbackRef">
 							<bean class="ls.demon.app.biz.service.impl.MyPasswordCallback"></bean>
@@ -44,6 +47,7 @@
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
 		</jaxws:outInterceptors>
 	</jaxws:server>
+
 
 	<!-- <jaxws:endpoint id="userService" -->
 	<!-- implementor="ls.demon.app.biz.service.impl.user.UserServiceImpl" -->

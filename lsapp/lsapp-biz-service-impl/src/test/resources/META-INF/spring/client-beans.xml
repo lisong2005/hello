@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:cxf="http://cxf.apache.org/core"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd 
@@ -15,8 +15,7 @@
 
 	<!-- one -->
 	<jaxws:client id="userService"
-		serviceClass="ls.demon.app.common.service.facade.user.UserService"
-		address="http://localhost:8080/lsapp/services/UserService">
+		serviceClass="ls.demon.app.common.service.facade.user.UserService" address="http://localhost:8080/lsapp/services/UserService">
 		<jaxws:inInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
 		</jaxws:inInterceptors>
@@ -25,6 +24,7 @@
 				<constructor-arg>
 					<map>
 						<entry key="action" value="UsernameToken" />
+						<!-- <entry key="passwordType" value="PasswordText" /> -->
 						<entry key="passwordType" value="PasswordDigest" />
 						<entry key="user" value="admin" />
 						<entry key="passwordCallbackRef">
@@ -45,10 +45,8 @@
 
 
 	<bean id="userServiceClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-		<property name="serviceClass"
-			value="ls.demon.app.common.service.facade.user.UserService" />
-		<property name="address"
-			value="http://localhost:8080/lsapp/services/UserService" />
+		<property name="serviceClass" value="ls.demon.app.common.service.facade.user.UserService" />
+		<property name="address" value="http://localhost:8080/lsapp/services/UserService" />
 	</bean>
 
 	<!-- end -->
