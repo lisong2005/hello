@@ -22,6 +22,8 @@
 		<cxf.version>3.0.1</cxf.version>
 		<!-- <cxf.version>2.7.12</cxf.version> -->
 
+		<jersey.version>1.18.1</jersey.version>
+
 		<lsapp.version>1.0.0</lsapp.version>
 		<lsapp.service.facade.version>1.0.2</lsapp.service.facade.version>
 
@@ -314,6 +316,34 @@
 				<groupId>org.apache.santuario</groupId>
 				<artifactId>xmlsec</artifactId>
 				<version>2.0.1</version>
+			</dependency>
+
+
+			<!-- jersey -->
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-server</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-core</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-json</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-servlet</artifactId>
+				<version>${jersey.version}</version>
 			</dependency>
 
 		</dependencies>
