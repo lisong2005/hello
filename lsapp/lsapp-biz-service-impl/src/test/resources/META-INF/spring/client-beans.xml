@@ -61,6 +61,9 @@
 			<bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
 		</jaxws:outInterceptors>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
 	</jaxws:client>
 
 

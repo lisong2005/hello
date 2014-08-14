@@ -2,17 +2,34 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:sec="http://cxf.apache.org/configuration/security" xmlns:wsa="http://cxf.apache.org/ws/addressing"
+	xmlns:http="http://cxf.apache.org/transports/http/configuration" xmlns:httpj="http://cxf.apache.org/transports/http-jetty/configuration"
+	xmlns:wsrm-policy="http://schemas.xmlsoap.org/ws/2005/02/rm/policy"
+	xmlns:wsrm-mgr="http://cxf.apache.org/ws/rm/manager"
 	xsi:schemaLocation="
-        http://www.springframework.org/schema/beans 
-        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd
-        http://cxf.apache.org/jaxws 
+        
+        http://cxf.apache.org/jaxws
         http://cxf.apache.org/schemas/jaxws.xsd
-        http://cxf.apache.org/core 
-        http://cxf.apache.org/schemas/core.xsd "
+        http://cxf.apache.org/core
+        http://cxf.apache.org/schemas/core.xsd
+        http://cxf.apache.org/configuration/security
+        http://cxf.apache.org/schemas/configuration/security.xsd
+             
+        http://cxf.apache.org/transports/http/configuration 
+	    http://cxf.apache.org/schemas/configuration/http-conf.xsd
+	    http://cxf.apache.org/transports/http-jetty/configuration             
+        http://cxf.apache.org/schemas/configuration/http-jetty.xsd
+                
+	    http://schemas.xmlsoap.org/ws/2005/02/rm/policy 
+	    http://schemas.xmlsoap.org/ws/2005/02/rm/wsrm-policy.xsd        
+	    http://cxf.apache.org/ws/rm/manager 
+	    http://cxf.apache.org/schemas/configuration/wsrm-manager.xsd"
 	default-autowire="byName">
 
 	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" /> -->
@@ -97,6 +114,10 @@
 		<cxf:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
 		</cxf:outInterceptors>
+		<cxf:features>
+			<cxf:logging />
+			<wsa:addressing />
+		</cxf:features>
 	</cxf:bus>
 
 
