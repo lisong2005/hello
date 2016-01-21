@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<parent>
+		<groupId>com.witon.xapp</groupId>
+		<artifactId>xapp</artifactId>
+		<version>1.0.0.1-SNAPSHOT</version>
+		<!-- <relativePath>../</relativePath> -->
+	</parent>
+
+
+	<!-- <groupId>com.witon</groupId> -->
+	<!-- <version>1.0.0.1-SNAPSHOT</version> -->
+	<artifactId>xapp-model</artifactId>
+	<name>xapp-model</name>
+	<url>http://maven.apache.org</url>
+
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>com.witon.xapp</groupId>
+			<artifactId>xapp-service-facade</artifactId>
+			<version>${xapp-service-facade.version}</version>
+		</dependency>
+
+
+	</dependencies>
+
+
+</project>

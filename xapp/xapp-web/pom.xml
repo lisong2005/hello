@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<parent>
+		<groupId>com.witon.xapp</groupId>
+		<artifactId>xapp</artifactId>
+		<version>1.0.0.1-SNAPSHOT</version>
+		<!-- <relativePath>../</relativePath> -->
+	</parent>
+
+
+	<!-- <groupId>com.witon</groupId> -->
+	<!-- <version>1.0.0.1-SNAPSHOT</version> -->
+	<artifactId>xapp-web</artifactId>
+	<packaging>war</packaging>
+	<name>xapp-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.witon.xapp</groupId>
+			<artifactId>xapp-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
+		<!-- Servlet Spec -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${jaxservlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jaxjsp.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
+			<version>${jaxjstl.api.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<finalName>xapp-web</finalName>
+	</build>
+
+
+</project>
