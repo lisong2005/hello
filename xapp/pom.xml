@@ -12,7 +12,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 
 		<xapp-service-facade.version>1.0.0.2</xapp-service-facade.version>
 
